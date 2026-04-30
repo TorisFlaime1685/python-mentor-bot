@@ -91,6 +91,7 @@ async def show_main_menu(message: Message):
         [InlineKeyboardButton(text="📖 Теория", callback_data="theory")],
         [InlineKeyboardButton(text="🎯 Получить задачу", callback_data="get_task")],
         [InlineKeyboardButton(text="🔧 Разбор кода", callback_data="review_info")],
+        [InlineKeyboardButton(text="🔥 Трекер привычки", callback_data="habit_tracker")],
         [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile")],
         [InlineKeyboardButton(text="❓ Помощь", callback_data="help")]
     ])
