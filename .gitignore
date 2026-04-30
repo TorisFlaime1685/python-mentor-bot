@@ -1,0 +1,36 @@
+# Секретный файл с токеном
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# База данных
+*.db
+*.sqlite
+*.sqlite3
+
+# Логи
+*.log
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Временные файлы
+*.tmp
+*.temp
