@@ -4,6 +4,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from config import BOT_TOKEN
 from handlers.habit import router as habit_router
+from handlers.puzzles import router as puzzles_router 
 
 logging.basicConfig(
     level=logging.INFO,
@@ -26,6 +27,7 @@ async def main():
     dp.include_router(tasks_router)
     dp.include_router(review_router)
     dp.include_router(habit_router) 
+    dp.include_router(puzzles_router) 
 
     await dp.start_polling(bot)
 
