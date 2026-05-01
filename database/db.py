@@ -1,14 +1,22 @@
 import aiosqlite
 from pathlib import Path
+import os
 
-DB_PATH = Path("database/bot_database.db")
+# Используем постоянное хранилище Amvera если доступно
+DATA_DIR = Path("/data") if os.path.exists("/data") else Path("database")
+DB_PATH = DATA_DIR / "bot_database.db"
+
+# Создаём папку если её нет
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 async def get_db():
+    """Получить соединение с БД"""
     db = await aiosqlite.connect(DB_PATH)
     db.row_factory = aiosqlite.Row
     return db
 
 async def init_db():
+    """Создать таблицы при первом запуске"""
     db = await get_db()
     await db.executescript("""
         CREATE TABLE IF NOT EXISTS users (
@@ -23,10 +31,11 @@ async def init_db():
 
         CREATE TABLE IF NOT EXISTS skill_progress (
             user_id INTEGER,
-            skill_name TEXT PRIMARY KEY,
+            skill_name TEXT,
             status TEXT DEFAULT 'locked',
             tasks_solved INTEGER DEFAULT 0,
             tasks_total INTEGER DEFAULT 3,
+            PRIMARY KEY (user_id, skill_name),
             FOREIGN KEY (user_id) REFERENCES users (user_id)
         );
 
